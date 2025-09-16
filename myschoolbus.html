@@ -781,77 +781,67 @@
     </section>
 
     <!-- Pricing Section -->
-    <section class="pricing-section">
+    <section class="pricing-section" id="pricing">
         <div class="pricing-container">
-            <h2 class="pricing-title">The Right Plan for Your School</h2>
+            <h2 class="pricing-title">MySchoolBus Pricing Plans</h2>
             <p class="pricing-subtitle">
-                We have several powerful plans your schools needs and get discovered as owners of Schools. Everything you need.
+                Choose the plan that best fits your school's needs.
             </p>
             
-           
             <div class="billing-toggle">
-                <span class="toggle-label">Bill Monthly</span>
+                <span class="toggle-label">Termly</span>
                 <div class="toggle-switch">
                     <div class="toggle-slider"></div>
                 </div>
-                <span class="toggle-label">Bill Annually</span>
+                <span class="toggle-label">Session</span>
             </div>
-          
+            
             <div class="pricing-grid">
         
                 <div class="pricing-card">
-                    <h3 class="plan-title">Basic</h3>
+                    <h3 class="plan-title">Essential Plan (Core Access)</h3>
+                    <p class="plan-description">For all schools (entry point)</p>
+                    <div class="plan-price">₦10,000 <span class="price-period">/ student / term</span></div>
                     <ul class="plan-features">
-                        <li class="feature included">GPS Tracking + Parent Alerts</li>
-                        <li class="feature excluded">+ RFID Attendance</li>
-                        <li class="feature excluded">+ Fingerprint Attendance</li>
-                        <li class="feature excluded">Custom Modules + Priority Support</li>
-                        <li class="feature excluded">Advanced Statistics</li>
+                        <li class="feature included">Student attendance (bus + class)</li>
+                        <li class="feature included">GPS tracking (live location of buses)</li>
+                        <li class="feature included">Instant parent notifications (pickup/drop-off)</li>
+                        <li class="feature included">Basic school dashboard & reports</li>
+                        <li class="feature included">Parent app (1 parent account per student)</li>
                     </ul>
-                    <div class="plan-price">#300k /month</div>
-                    <button class="plan-button">Choose</button>
+                    <button class="plan-button">Choose Plan</button>
                 </div>
                 
          
-                <div class="pricing-card">
-                    <h3 class="plan-title">RFID</h3>
+                <div class="pricing-card featured">
+                    <h3 class="plan-title">Smart Plan (Enhanced Management)</h3>
+                    <p class="plan-description">For growth-focused schools</p>
+                    <div class="plan-price">₦12,000 <span class="price-period">/ student / term</span></div>
                     <ul class="plan-features">
-                        <li class="feature included">GPS Tracking + Parent Alerts</li>
-                        <li class="feature included">+ RFID Attendance</li>
-                        <li class="feature excluded">+ Fingerprint Attendance</li>
-                        <li class="feature excluded">Custom Modules + Priority Support</li>
-                        <li class="feature excluded">Advanced Statistics</li>
+                        <li class="feature included">Everything in Essential, + :</li>
+                        <li class="feature included">Multi-parent access</li>
+                        <li class="feature included">In-app school-parent communication</li>
+                        <li class="feature included">Teacher attendance management</li>
+                        <li class="feature included">Advanced analytics</li>
+                        <li class="feature included">Integration with school calendar/events</li>
                     </ul>
-                    <div class="plan-price">#700k /month</div>
-                    <button class="plan-button">Choose</button>
+                    <button class="plan-button featured">Choose Plan</button>
                 </div>
           
-                <div class="pricing-card featured">
-                    <div class="featured-badge">Save $40</div>
-                    <h3 class="plan-title">Biometrics</h3>
-                    <ul class="plan-features">
-                        <li class="feature included">GPS Tracking + Parent Alerts</li>
-                        <li class="feature included">+ RFID Attendance</li>
-                        <li class="feature included">+ Fingerprint Attendance</li>
-                        <li class="feature excluded">Custom Modules + Priority Support</li>
-                        <li class="feature excluded">Advanced Statistics</li>
-                    </ul>
-                    <div class="plan-price">#900k /month</div>
-                    <button class="plan-button featured">Try 1 month</button>
-                </div>
-                
-      
                 <div class="pricing-card">
-                    <h3 class="plan-title">Enterprise</h3>
+                    <h3 class="plan-title">Premium Plan (Full Experience)</h3>
+                    <p class="plan-description">For innovation-driven schools</p>
+                    <div class="plan-price">₦20,000 <span class="price-period">/ student / term</span></div>
                     <ul class="plan-features">
-                        <li class="feature included">GPS Tracking + Parent Alerts</li>
-                        <li class="feature included">+ RFID Attendance</li>
-                        <li class="feature included">+ Fingerprint Attendance</li>
-                        <li class="feature included">Custom Modules + Priority Support</li>
-                        <li class="feature included">Advanced Statistics</li>
+                        <li class="feature included">Everything in Smart, plus:</li>
+                        <li class="feature included">Predictive ETA & traffic alerts</li>
+                        <li class="feature included">Digital payment collection</li>
+                        <li class="feature included">Vendor marketplace</li>
+                        <li class="feature included">Parent upgrade options</li>
+                        <li class="feature included">Custom branding for schools</li>
+                        <li class="feature included">Dedicated customer success support</li>
                     </ul>
-                    <div class="plan-price">#1.2 million /month</div>
-                    <button class="plan-button">Choose</button>
+                    <button class="plan-button">Choose Plan</button>
                 </div>
             </div>
         </div>
@@ -990,8 +980,33 @@
     <!-- Scripts -->
     <script src="script.js"></script>
     <script src="js/tabs.js"></script>
-</body>
-</html>
+    <script>
+        const toggleSwitch = document.querySelector('.toggle-switch');
+        const pricingCards = document.querySelectorAll('.pricing-card');
+        const originalPrices = [];
+
+        pricingCards.forEach(card => {
+            const priceElement = card.querySelector('.plan-price');
+            originalPrices.push(priceElement.textContent);
+        });
+
+        toggleSwitch.addEventListener('click', () => {
+            toggleSwitch.classList.toggle('active');
+            const isSession = toggleSwitch.classList.contains('active');
+
+            pricingCards.forEach((card, index) => {
+                const priceElement = card.querySelector('.plan-price');
+                const pricePeriod = card.querySelector('.price-period');
+                const originalPriceText = originalPrices[index];
+                const originalPrice = parseInt(originalPriceText.replace(/[^0-9]/g, ''));
+
+                if (isSession) {
+                    const sessionPrice = originalPrice * 3;
+                    priceElement.innerHTML = `₦${sessionPrice.toLocaleString()} <span class="price-period">/ student / session</span>`;
+                } else {
+                    priceElement.innerHTML = `₦${originalPrice.toLocaleString()} <span class="price-period">/ student / term</span>`;
+                }
+            });
         });
     </script>
 </body>

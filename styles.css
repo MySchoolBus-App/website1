@@ -1702,8 +1702,8 @@ html {
 
 /* Pricing Grid */
 .pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    justify-content: center;
     gap: 2rem;
     margin-top: 2rem;
 }
